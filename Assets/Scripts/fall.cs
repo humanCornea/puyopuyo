@@ -15,7 +15,10 @@ public class fall : MonoBehaviour
     void Update()
     {
         this.transform.Translate(0, this.speed, 0);
+        if(this.speed != 0f)
+        {
         this.KeyOperation();
+        }
     }
 
     void KeyOperation()
@@ -30,5 +33,6 @@ public class fall : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         this.speed = 0;
+        Debug.Log(other.ToString());
     }
 }

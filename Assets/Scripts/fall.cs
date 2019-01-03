@@ -32,7 +32,8 @@ public class fall : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
-        this.speed = 0;
-        Debug.Log(other.ToString());
+        if ( other.gameObject.name == "Floor" ) {
+            this.speed = 0;
+        }
     }
 }

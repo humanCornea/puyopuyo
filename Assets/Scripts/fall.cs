@@ -5,6 +5,7 @@ using UnityEngine;
 public class fall : MonoBehaviour
 {
     float speed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class fall : MonoBehaviour
         this.transform.Translate(0, this.speed, 0);
         if(this.speed != 0f)
         {
-        this.KeyOperation();
+            this.KeyOperation();
         }
     }
 

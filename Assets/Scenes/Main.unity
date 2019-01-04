@@ -207,6 +207,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc36ffedfc1bb4c46802ffd493db4cea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poyo1: {fileID: 0}
+  poyo2: {fileID: 0}
+  poyoSize: 0.335
 --- !u!1 &1415750342
 GameObject:
   m_ObjectHideFlags: 0

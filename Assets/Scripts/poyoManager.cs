@@ -22,7 +22,7 @@ public class poyoManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {    
         ChangePoyo();
     }
 
@@ -31,7 +31,7 @@ public class poyoManager : MonoBehaviour
     void ChangePoyo()
     {
 
-        float x =poyo1.transform.position.x;
+        float x = poyo1.transform.position.x;
         float y = poyo1.transform.position.y;
         float x2;
         float y2;

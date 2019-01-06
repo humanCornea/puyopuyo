@@ -1,71 +1,75 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Constant;
 
 public class poyoManager : MonoBehaviour
 {
     GameObject prefabs;
     Quaternion q = Quaternion.identity;
-    Vector3 poyoIniposi = new Vector3(0,2,0);
-    Vector3 poyo2Iniposi = new Vector3(0,1.7f,0);
 
     public GameObject poyo1;
     public GameObject poyo2;
     // Start is called before the first frame update
+    private float poyoSize;
+
     void Start()
     {
+        
         Debug.Log("Game start");
         this.prefabs = (GameObject)Resources.Load("Prefabs/poyo");
-        poyo1 = Instantiate(this.prefabs,poyoIniposi,q);
-        poyo2 = Instantiate(this.prefabs,poyo2Iniposi,q);   
+        this.wPoyoSet();
+        this.poyoSize = GameObject.Find("poyo(Clone)").gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
+    }
+
+    void wPoyoSet()
+    {
+        Vector3 poyoIniposi = new Vector3(0, 2, 0);
+        Vector3 poyo2Iniposi = new Vector3(0, 1.7f, 0);
+        this.poyo1 = Instantiate(this.prefabs, poyoIniposi, q);
+        this.poyo2 = Instantiate(this.prefabs, poyo2Iniposi, q);
+        int poyoPosi = (int)Constant.Direction.DOWN;
     }
 
     // Update is called once per frame
     void Update()
-    {    
-        ChangePoyo();
+    {
+        this.ChangePoyoPosi();
+        Debug.Log(this.poyoSize);
     }
 
-    int poyoPosi =0;
-    public float poyoSize;
-    void ChangePoyo()
+    void ChangePoyoPosi()
     {
-
         float x = poyo1.transform.position.x;
         float y = poyo1.transform.position.y;
-        float x2;
-        float y2;
-        
-
-        if(Input.GetKeyDown(KeyCode.A))
+ 
+        if (Input.GetKeyDown(KeyCode.A))
         {
             poyoPosi++;
         }
-        if(Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))
         {
-            poyoPosi =poyoPosi+3;
+            poyoPosi = poyoPosi + 3;
         }
 
-        if(poyoPosi%4==0){
-            x=x;
-            y=y-poyoSize;
-        }
-        else if(poyoPosi%4==1)
+        switch(poyoPosi % 4)
         {
-            x=x-poyoSize;
-            y=y;
+            case (int)Constant.Direction.DOWN:
+                y = y - this.poyoSize;
+                break;
+            case (int)Constant.Direction.LEFT:
+                x = x - this.poyoSize;
+                break;
+            case (int)Constant.Direction.UP:
+                y = y + this.poyoSize;
+                break;
+            case (int)Constant.Direction.RIGHT:
+                x = x + this.poyoSize;
+                break;
+            
         }
-        else if(poyoPosi%4==2)
-        {
-            x=x;
-            y=y+poyoSize;
-        }
-        else if(poyoPosi%4==3)
-        {
-            x=x+poyoSize;
-            y=y;
-        }
-        poyo2.transform.position = new Vector3(x,y,0);
+        poyo2.transform.position = new Vector3(x, y, 0);
 
     }
+
 }
